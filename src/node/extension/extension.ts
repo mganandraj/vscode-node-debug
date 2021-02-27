@@ -14,22 +14,22 @@ import { initializeAutoAttach } from './autoAttach';
 export function activate(context: vscode.ExtensionContext) {
 
 	// register a configuration provider
-	context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('node', new NodeConfigurationProvider(context)));
+	context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('v8jsidbg', new NodeConfigurationProvider(context)));
 
 	// auto attach
 	initializeAutoAttach(context);
 
 	// toggle skipping file action
-	context.subscriptions.push(vscode.commands.registerCommand('extension.node-debug.toggleSkippingFile', toggleSkippingFile));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.v8jsi-debug.toggleSkippingFile', toggleSkippingFile));
 
 	// process picker command
 	context.subscriptions.push(vscode.commands.registerCommand('extension.pickNodeProcess', pickProcess));
 
 	// attach process command
-	context.subscriptions.push(vscode.commands.registerCommand('extension.node-debug.attachNodeProcess', attachProcess));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.v8jsi-debug.attachNodeProcess', attachProcess));
 
 	// F10 and F11 should start debugging with stopOnEntry:true
-	context.subscriptions.push(vscode.commands.registerCommand('extension.node-debug.startWithStopOnEntry', startDebuggingAndStopOnEntry));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.v8jsi-debug.startWithStopOnEntry', startDebuggingAndStopOnEntry));
 
 	// cluster
 	context.subscriptions.push(vscode.debug.onDidStartDebugSession(session => Cluster.startSession(session)));
